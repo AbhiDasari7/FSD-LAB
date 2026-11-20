@@ -1,242 +1,272 @@
-# DearFSD – Full Stack Development Lab
+# FSD-LAB – Full Stack Development Lab
 
-A collection of practical experiments and applications developed as part of the Full Stack Development Lab.
+A collection of practical experiments, applications, and projects developed as part of the Full Stack Development Lab. This repository demonstrates various concepts of frontend development, backend development, database integration, and full-stack application development.
 
-## ⚡ Step-by-Step Fast Deployment Guide (For Friends & Classmates)
-
-### 📌 Step 1: Get the Code to Your Own GitHub
-
-Choose either **Option A** or **Option B**:
-
-* **Option A (The Fork Method – 5 Seconds, Fastest):**
-  1. Open [https://github.com/Mahe13185/DearFSD](https://github.com/Mahe13185/DearFSD).
-  2. Click the **Fork** button (top right) → **Create fork**.
-  3. You now have the repo at: `https://github.com/<YOUR-USERNAME>/DearFSD`.
-  *(Note: It will say "forked from Mahe13185/DearFSD" on your GitHub).*
-
-* **Option B (Clone & Upload as a Fresh Repo – No "Forked From" Tag):**
-  1. Create a new empty repository on your GitHub (e.g. `DearFSD`).
-  2. In your computer's terminal:
-     ```bash
-     git clone https://github.com/Mahe13185/DearFSD.git
-     cd DearFSD
-     git remote set-url origin https://github.com/<YOUR-USERNAME>/DearFSD.git
-     git push -u origin main
-     ```
+The repository includes React applications, Node.js and Express.js backend services, MongoDB integrations, MVC architecture, authentication, and MERN stack development.
 
 ---
 
-### ⚡ Step 2: Deploy All 10 React Frontend Apps to Vercel (Local Terminal / VS Code)
+## ⚡ Deployment Guide
 
-Now that you have your repository on GitHub:
+This guide explains how to deploy the frontend applications using Vercel and backend applications using Render.
 
-1. **Open VS Code (or Terminal) on your computer** and clone your repository:
-   ```bash
-   git clone https://github.com/<YOUR-USERNAME>/DearFSD.git
-   cd DearFSD
-   ```
-2. **Log into Vercel CLI (Required first time):**
-   ```bash
-   npm run login:vercel
-   ```
-   *(Choose **Continue with GitHub** or Email and approve in the browser).*
+### Step 1: Get the Code from GitHub
 
-3. **Run the automated deploy command in that terminal:**
-   ```bash
-   npm run deploy:vercel
-   ```
-   * It will automatically build and deploy all 10 React applications to your Vercel account.
-   * It will automatically update your local `README.md` with your personal live URLs.
-   * It will display your live projects table (`npx vercel project ls`) in the terminal.
+Clone the repository to your local system.
 
-4. **Command to view all your live Vercel links anytime:**
-   ```bash
-   npx vercel project ls
-   ```
+```bash
+git clone https://github.com/AbhiDasari7/FSD-LAB.git
+cd FSD-LAB
+```
 
-> [!TIP]
-> **Switching Vercel Accounts:** If your computer is already logged into another Vercel account and you want to deploy to your own or your friend's account, run:
-> ```bash
-> npm run logout:vercel
-> npm run login:vercel
-> ```
+### Step 2: Deploy React Frontend Applications to Vercel
+
+The frontend applications are deployed using Vercel.
+
+**1. Login to Vercel CLI**
+
+```bash
+npm run login:vercel
+```
+
+Choose Continue with GitHub or Email and complete authentication in the browser.
+
+**2. Deploy all configured React applications**
+
+```bash
+npm run deploy:vercel
+```
+
+The deployment script deploys the configured React applications separately and updates the local README with deployment URLs.
+
+**3. View deployed projects**
+
+```bash
+npx vercel project ls
+```
+
+**Switching Vercel accounts:**
+
+```bash
+npm run logout:vercel
+npm run login:vercel
+```
+
+### Step 3: Deploy Backend Applications to Render
+
+Backend applications are deployed using Render Blueprint.
+
+1. Open https://dashboard.render.com/
+2. Sign in using your GitHub account.
+3. Click **New + → Blueprint**.
+4. Connect the GitHub repository: `AbhiDasari7/FSD-LAB`.
+5. Render reads the `render.yaml` configuration file.
+6. Review the configured backend services and environment variables.
+7. Click **Apply** to start deployment.
+
+Render automatically creates the services defined in the Blueprint configuration.
+
+**Important:** Configure MongoDB connection strings and JWT secrets through Render environment variables. Never expose passwords, database credentials, or secret keys in public GitHub repositories.
+
+### Step 4: Find Your Live Render URLs
+
+After successful deployment:
+
+1. Open your Render Dashboard.
+2. Open the FSD-LAB Blueprint group.
+3. Select the required backend service.
+4. Copy its generated `.onrender.com` URL.
+5. Use that URL to access and test the backend API.
+
+Each deployed service receives its own URL.
 
 ---
 
-### 🌐 Step 3: Deploy All Backend Services to Render (1-Click Blueprint)
+## 🌐 Frontend Applications – Vercel
 
-1. Open [dashboard.render.com](https://dashboard.render.com) (sign in with your GitHub).
-2. Click **New +** → **Blueprint**.
-3. Select your repository: **`DearFSD`**.
-4. Render will read `render.yaml` and configure all 7 backend web services automatically.
-5. Click **Apply**. Render will build and deploy all 7 services in parallel.
-
-#### 📌 Where to Find YOUR Own Live Render Links:
-On Render, each account receives its own unique URLs (Render automatically appends a short unique identifier, e.g. `-xxxx.onrender.com`):
-1. In your **[Render Dashboard](https://dashboard.render.com)**, click on your **`DearFSD`** Blueprint group.
-2. All 7 services are listed in a table, with each service's **own live `.onrender.com` URL** displayed right under its name!
-3. Click on any service to copy your personal live URL or test its endpoints.
-
----
-
-### 💻 Step 4: In Case Sir Asks for Terminal cURL Commands (CRUD Testing)
-
-> [!TIP]
-> If your instructor asks you to execute **cURL commands in the terminal** to demonstrate CRUD operations directly, use the commands below.
-> 
-> *Replace `<YOUR-FILE-PERSISTENT-DOMAIN-URL>` with your own Render domain from Step 3 (e.g. `file-persistent-app.onrender.com` or `file-persistent-app-xxxx.onrender.com`).*
-
-#### 📁 Faculty File Persistence API (`/api/v1/faculty`)
-*Demonstrates File-based JSON persistence (`fs.readFileSync` / `fs.writeFileSync`) in Node.js & Express.*
-
-| Operation | HTTP Method | Endpoint | Purpose |
-|---|:---:|---|---|
-| **Create** | `POST` | `/api/v1/faculty` | Add a new faculty member |
-| **Read All** | `GET` | `/api/v1/faculty` | Retrieve all faculty records |
-| **Read by ID** | `GET` | `/api/v1/faculty/:id` | Fetch specific faculty by ID |
-| **Update** | `PUT` | `/api/v1/faculty/:id` | Modify faculty details |
-| **Delete** | `DELETE` | `/api/v1/faculty/:id` | Remove faculty record |
-
-##### 1. CREATE — Add New Faculty (POST):
-```bash
-curl -X POST https://<YOUR-FILE-PERSISTENT-DOMAIN-URL>/api/v1/faculty -H "Content-Type: application/json" -d '{"id":3,"name":"Dr.Kumar","department":"CSE","subject":"Java"}'
-```
-
-##### 2. READ ALL — Get All Faculty (GET):
-```bash
-curl -X GET https://<YOUR-FILE-PERSISTENT-DOMAIN-URL>/api/v1/faculty
-```
-
-##### 3. READ BY ID — Get Faculty by ID (GET):
-```bash
-curl -X GET https://<YOUR-FILE-PERSISTENT-DOMAIN-URL>/api/v1/faculty/3
-```
-
-##### 4. UPDATE — Modify Faculty by ID (PUT):
-```bash
-curl -X PUT https://<YOUR-FILE-PERSISTENT-DOMAIN-URL>/api/v1/faculty/3 -H "Content-Type: application/json" -d '{"name":"Dr.Kumar","department":"AI & DS","subject":"Python"}'
-```
-
-##### 5. DELETE — Remove Faculty by ID (DELETE):
-```bash
-curl -X DELETE https://<YOUR-FILE-PERSISTENT-DOMAIN-URL>/api/v1/faculty/3
-```
+| No. | Experiment Name | Deployment Platform |
+|---|---|---|
+| 1 | React Conditional Rendering | Vercel |
+| 2 | React Form Events | Vercel |
+| 3 | React Frontend CRUD | Vercel |
+| 4 | React HTML Render | Vercel |
+| 5 | React JSX Render | Vercel |
+| 6 | React Nested Components | Vercel |
+| 7 | React Rendering Lists | Vercel |
+| 8 | React State Events | Vercel |
+| 9 | React Router | Vercel |
+| 10 | MERN CRUD Frontend | Vercel |
 
 ---
 
-## 🌐 Reference Live Demos (Deployed by Mahendra Gampala)
+## ⚙️ Backend Applications – Render
 
-> [!NOTE]
-> The links below are live reference deployments created by the author for testing and previewing. When you deploy via the steps above, your own links will be generated in your Vercel and Render dashboards.
-
-### React Frontend Applications (Vercel)
-
-| No. | Experiment Name | Live Demo | Deploy to Your Vercel | Status |
-|---:|---|---|:---:|:---:|
-| 1 | React Conditional Rendering | [Live Demo](https://react-conditional-rendering-mocha.vercel.app/) | [![Deploy](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FMahe13185%2FDearFSD&project-name=react-conditional-rendering&root-directory=react-conditional-rendering-app%2Freact-conditional-rendering-app-main) | ✅ Live |
-| 2 | React Form Events | [Live Demo](https://react-form-events-drab.vercel.app/) | [![Deploy](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FMahe13185%2FDearFSD&project-name=react-form-events&root-directory=react-form-events-app%2Freact-form-events-app-main) | ✅ Live |
-| 3 | React Frontend CRUD | [Live Demo](https://react-frontend-crud-rho.vercel.app/) | [![Deploy](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FMahe13185%2FDearFSD&project-name=react-frontend-crud&root-directory=react-frontend-crud-app%2Freact-frontend-crud-app-main) | ✅ Live |
-| 4 | React HTML Render | [Live Demo](https://react-html-render-gamma.vercel.app/) | [![Deploy](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FMahe13185%2FDearFSD&project-name=react-html-render&root-directory=react_html_render_app%2Freact_html_render_app) | ✅ Live |
-| 5 | React JSX Render | [Live Demo](https://react-jsx-render.vercel.app/) | [![Deploy](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FMahe13185%2FDearFSD&project-name=react-jsx-render&root-directory=react_jsx_render_app%2Freact_jsx_render_app) | ✅ Live |
-| 6 | React Nested Components | [Live Demo](https://react-nested-components-two.vercel.app/) | [![Deploy](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FMahe13185%2FDearFSD&project-name=react-nested-components&root-directory=react_multiple_components%2Freact_multiple_components) | ✅ Live |
-| 7 | React Rendering Lists | [Live Demo](https://react-rendering-lists-bay.vercel.app/) | [![Deploy](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FMahe13185%2FDearFSD&project-name=react-rendering-lists&root-directory=react-rendering-lists-app%2Freact-rendering-lists-app-main) | ✅ Live |
-| 8 | React State Events | [Live Demo](https://react-state-events-seven.vercel.app/) | [![Deploy](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FMahe13185%2FDearFSD&project-name=react-state-events&root-directory=react-state-events-app%2Freact-state-events-app-main) | ✅ Live |
-| 9 | React Router | [Live Demo](https://react-router-beta-swart.vercel.app/) | [![Deploy](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FMahe13185%2FDearFSD&project-name=react-router&root-directory=react-router-app%2Freact-router-app-main) | ✅ Live |
-
-### MERN Stack Application
-
-| Component | Experiment / Service | Live Demo | Deploy to Your Vercel | Platform |
-|---|---|---|:---:|:---:|
-| Frontend | MERN CRUD Frontend | [Live Demo](https://mern-crud-frontend-steel.vercel.app/) | [![Deploy](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FMahe13185%2FDearFSD&project-name=mern-crud-frontend&root-directory=mern-crud-app%2Fmern-crud-app-main%2Ffrontend) | Vercel |
-| Backend | MERN CRUD Posts API | [Live API](https://full-stack-development-lab.onrender.com/) | *(Via Render Blueprint)* | Render |
-
-### Backend Applications (Render)
-
-| No. | Experiment Name | Live Deployment URL | Status |
-|---:|---|---|:---:|
-| 1 | Products File Persistence | [Live API](https://file-persistent-app.onrender.com/api/v1/faculty) | ✅ Live |
-| 2 | MongoDB Express | [Live API](https://mongodb-express-app-xky0.onrender.com/api/v1/books) | ✅ Live |
-| 3 | MongoDB Mongoose Movies | [Live API](https://mongodb-mongoose-movies-app-zzof.onrender.com/) | ✅ Live |
-| 4 | MVC Auth | [Live API](https://mvc-auth-app-zegs.onrender.com/) | ✅ Live |
-| 5 | MVC Express | [Live API](https://mvc-express-app-fc7f.onrender.com/api/v1/movies) | ✅ Live |
-| 6 | Template Engine EJS | [Live API](https://template-engine-ejs-app-9nip.onrender.com/) | ✅ Live |
-| 7 | Express Middleware API | [Live API](https://express-middleware-api.onrender.com/) | ✅ Live |
+| No. | Application | Render Service |
+|---|---|---|
+| 1 | Products File Persistence | `file-persistent-app` |
+| 2 | MongoDB Express | `mongodb-express-app` |
+| 3 | MongoDB Mongoose Movies | `mongodb-mongoose-movies-app` |
+| 4 | MVC Authentication | `mvc-auth-app` |
+| 5 | MVC Express | `mvc-express-app` |
+| 6 | Template Engine EJS | `template-engine-ejs-app` |
+| 7 | Express Middleware API | `express-middleware-api` |
+| 8 | MERN CRUD Backend | `mern-crud-backend` |
 
 ---
 
-## Technologies Used
+## 💻 Technologies Used
 
-- HTML, CSS, JavaScript
+### Frontend
+- HTML5
+- CSS3
+- JavaScript
 - React.js
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- EJS
-
-## Project Structure
-
-| Folder | Description |
-|---|---|
-| React applications | React concepts and frontend experiments |
-| Express applications | Express.js and middleware experiments |
-| MongoDB applications | MongoDB and Mongoose integration |
-| MERN application | Full-stack CRUD application |
-
-## Applications
-
-### React
-- JSX Rendering
-- Multiple Components
-- HTML Rendering
-- Conditional Rendering
-- Rendering Lists
-- State and Events
-- Form Events
+- JSX
 - React Router
-- Frontend CRUD
 
 ### Backend
+- Node.js
+- Express.js
+- REST APIs
+- MVC Architecture
+- EJS Template Engine
+- Middleware
+
+### Database
+- MongoDB
+- Mongoose
+
+### Deployment and Tools
+- Git
+- GitHub
+- Vercel
+- Render
+- npm
+- VS Code
+
+---
+
+## 📂 Project Structure
+
+The repository contains multiple frontend and backend applications.
+
+### Frontend Applications
+- React Conditional Rendering
+- React Form Events
+- React Frontend CRUD
+- React HTML Rendering
+- React JSX Rendering
+- React Nested Components
+- React Rendering Lists
+- React State and Events
+- React Router
+- MERN CRUD Frontend
+
+### Backend Applications
 - File Persistent Application
-- Non-Persistent Application
-- Express Middleware API
 - MongoDB Express Application
 - Mongoose Express Application
-- MVC Express Application
 - MVC Authentication Application
+- MVC Express Application
 - EJS Template Engine
+- Express Middleware API
+- MERN CRUD Backend
 
-### MERN
-- MERN CRUD Application
+---
 
-## Running an Application
+## 🚀 Running an Application Locally
 
-Navigate to the respective application directory:
+To run any individual application:
+
+**Step 1: Navigate to the application directory**
 
 ```bash
 cd path/to/application
+```
+
+**Step 2: Install dependencies**
+
+```bash
 npm install
+```
+
+**Step 3: Start the application**
+
+For applications using the development script:
+
+```bash
 npm run dev
 ```
 
-For applications using a start script:
+For applications using the start script:
 
 ```bash
 npm start
 ```
 
-Refer to each application's package.json for its available scripts.
+Refer to the respective `package.json` file to check the available scripts.
 
-## Deployment
+---
 
-- Frontend applications are deployed using Vercel.
-- Backend applications are deployed using Render.
+## 💻 API Testing – CRUD Operations
 
-## 👤 Author & Credits
+The File Persistence API demonstrates CRUD operations using Node.js, Express.js, and JSON file storage.
 
-* **Author:** **Mahendra Gampala**
-* **GitHub:** [@Mahe13185](https://github.com/Mahe13185)
-* **LinkedIn:** [Mahendra Gampala](https://www.linkedin.com/in/mahendragampala)
-* **Repository:** [https://github.com/Mahe13185/DearFSD](https://github.com/Mahe13185/DearFSD)
+### Faculty API
 
-⭐ **If you found this repository or automated deployment useful, please star the repo and follow me on [GitHub](https://github.com/Mahe13185) & [LinkedIn](https://www.linkedin.com/in/mahendragampala)!**
+Base URL:
+
+```text
+https://YOUR-FILE-PERSISTENT-RENDER-URL
+```
+
+| Operation | HTTP Method | Endpoint | Purpose |
+|---|---|---|---|
+| Create | POST | `/api/v1/faculty` | Add a faculty member |
+| Read All | GET | `/api/v1/faculty` | Retrieve all faculty |
+| Read by ID | GET | `/api/v1/faculty/:id` | Retrieve faculty by ID |
+| Update | PUT | `/api/v1/faculty/:id` | Update faculty details |
+| Delete | DELETE | `/api/v1/faculty/:id` | Delete faculty |
+
+### 1. CREATE – Add Faculty
+
+```bash
+curl -X POST https://YOUR-FILE-PERSISTENT-RENDER-URL/api/v1/faculty -H "Content-Type: application/json" -d '{"id":3,"name":"Dr.Kumar","department":"CSE","subject":"Java"}'
+```
+
+### 2. READ ALL – Get All Faculty
+
+```bash
+curl -X GET https://YOUR-FILE-PERSISTENT-RENDER-URL/api/v1/faculty
+```
+
+### 3. READ BY ID – Get Faculty by ID
+
+```bash
+curl -X GET https://YOUR-FILE-PERSISTENT-RENDER-URL/api/v1/faculty/3
+```
+
+### 4. UPDATE – Modify Faculty
+
+```bash
+curl -X PUT https://YOUR-FILE-PERSISTENT-RENDER-URL/api/v1/faculty/3 -H "Content-Type: application/json" -d '{"name":"Dr.Kumar","department":"AI & DS","subject":"Python"}'
+```
+
+### 5. DELETE – Remove Faculty
+
+```bash
+curl -X DELETE https://YOUR-FILE-PERSISTENT-RENDER-URL/api/v1/faculty/3
+```
+
+Replace the placeholder URL with your actual deployed Render service URL.
+
+---
+
+## 🌍 Deployment Platforms
+
+| Application Type | Hosting Platform |
+|---|---|
+| React Frontend Applications | Vercel |
+| Node.js Backend Applications | Render |
+| Database | MongoDB Atlas |
+| Source Code Management | GitHub |
